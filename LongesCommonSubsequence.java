@@ -5,33 +5,33 @@ public class LongesCommonSubsequence
 {
     public static void LCS(String s1, String s2)
     {
-        int i = s1.length();
-        int j = s2.length();
+        int length1 = s1.length();
+        int length2 = s2.length();
         
-        int[][] M = new int[i+1][j+1];
+        int[][] M = new int[length1+1][length2+1];
         
         // Build the table using bottom up approach
-        for(int k = 0; k <= i; k++)
+        for(int i = 0; i <= length1; i++)
         {
-            for(int l = 0; l <= j; l++)
+            for(int j = 0; j <= length2; j++)
             {   
-                if(k == 0 || l == 0)
+                if(i == 0 || j == 0)
                 {
-                    M[k][l] = 0;
+                    M[i][j] = 0;
                 }
-                else if(s1.charAt(i-1) == s2.charAt(j-1))
+                else if(text1.charAt(i-1) == text2.charAt(j-1))
                 {
-                    M[k][l]  =  M[k-1][l-1] + 1;
+                    M[i][j]  =  M[i-1][j-1] + 1;
                 }
                 else
                 {
-                   M[k][l] = Math.max(M[k-1][l], M[k][l-1]);
+                   M[i][j] = Math.max(M[i-1][j], M[i][j-1]);
                 }                
             }
         }
         
         //this is the lenght of max subsequence
-        int index = M[i][j];
+        int index = M[length1][length2];
         
         System.out.println("Lenght of LongesCommonSubsequence = " + index + "\n");
         
